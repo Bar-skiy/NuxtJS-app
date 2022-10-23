@@ -2,7 +2,7 @@
   <div>
     <Navbar />
     <main>
-      <div class="container">
+      <div class="container text-center">
         <Nuxt />
       </div>
     </main>
