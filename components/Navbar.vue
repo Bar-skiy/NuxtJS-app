@@ -6,13 +6,13 @@
         <div class="collapse navbar-collapse">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/">Home</a>
+              <nuxt-link class="nav-link active" aria-current="page" to="/">Home</nuxt-link>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/users">Users</a>
+              <nuxt-link class="nav-link" to="/users">Users</nuxt-link>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/about">About</a>
+              <nuxt-link class="nav-link" to="/about">About</nuxt-link>
             </li>
           </ul>
         </div>
