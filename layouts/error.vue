@@ -4,6 +4,7 @@
         <nuxt-link to="/">Go to home page</nuxt-link>
     </section>
 </template>
+
 <style scoped>
 h1 {
     color: red;

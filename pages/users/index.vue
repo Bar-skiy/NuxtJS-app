@@ -1,26 +1,39 @@
 <template>
   <section>
-    <h2>Users page</h2>
+    <h2>{{pageTitle}}</h2>
     <div class="block">
-    <ul>
-      <li v-for="user in users" :key="user">
-        <a href="#" @click.prevent="goTo(user)">User {{user}}</a>
-      </li>
-    </ul>
+      <ul>
+        <li v-for="user in users" :key="user.id">
+          <a href="#" @click.prevent ="goTo(user)">{{ user.name }} - ({{ user.email }})</a>
+        </li>
+      </ul>
     </div>
   </section>
 </template>
 
 <script>
+import { resolve } from "path";
+
 export default {
+  asyncData({$axios, error}) {
+    return $axios.$get('https://jsonplaceholder.typicode.com/users')
+    .then(users => {
+      return {
+        users
+      }
+    })
+    .catch(err => {
+      error(err)
+    })
+  },
   data() {
     return {
-      users: [1, 2, 3, 4, 5],
+      pageTitle: 'Users page'
     };
   },
   methods: {
     goTo(user) {
-    this.$router.push('/users/' + user)
+      this.$router.push('/users/' + user.id)
     }
   }
 };

@@ -16,6 +16,7 @@ export default {
     ]
   },
 
+  loading: {color: 'blue'},
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '@node_modules/bootstrap/dist/css/bootstrap.min.css'
@@ -33,8 +34,11 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
-  ],
+  modules: ['@nuxtjs/axios'],
+
+  axios: {
+    // proxy: true
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

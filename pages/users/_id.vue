@@ -1,11 +1,23 @@
 <template>
-    <h4 class="text-secondary">Users with id {{$route.params.id}}</h4>
+  <div>
+  <h1> {{ user.name }}</h1>
+  <hr />
+  <b>{{ user.email }}</b>
+</div>
 </template>
 
 <script>
 export default {
-    validate({params}) {
-return /^[1, 2, 3, 4, 5]+$/.test(params.id)
+  // validate({ params }) {
+  //   return /^\d+$/.test(params.id)
+  // },
+  async asyncData({ params, error, $axios }) {
+    try {
+      const user = await $axios.$get(`https://jsonplaceholder.typicode.com/users/${params.id}`)
+      return {user}
+    } catch(e) {
+      error(e)
     }
-}
+  },
+};
 </script>
