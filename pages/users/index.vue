@@ -1,10 +1,12 @@
 <template>
   <section>
-    <h2>{{pageTitle}}</h2>
+    <h2>{{ pageTitle }}</h2>
     <div class="block">
       <ul>
         <li v-for="user in users" :key="user.id">
-          <a href="#" @click.prevent ="goTo(user)">{{ user.name }} - ({{ user.email }})</a>
+          <a href="#" @click.prevent="goTo(user)"
+            >{{ user.name }} - ({{ user.email }})</a
+          >
         </li>
       </ul>
     </div>
@@ -15,26 +17,32 @@
 import { resolve } from "path";
 
 export default {
-  asyncData({$axios, error}) {
-    return $axios.$get('https://jsonplaceholder.typicode.com/users')
-    .then(users => {
-      return {
-        users
+  async fetch({ store, error }) {
+    try {
+      if (store.getters["users/users"].length === 0) {
+      await store.dispatch("users/fetchUsers");
       }
-    })
-    .catch(err => {
-      error(err)
-    })
+    } catch (e) {
+      error(e);
+    }
   },
+
   data() {
     return {
-      pageTitle: 'Users page'
+      pageTitle: "Users page",
     };
   },
+
+  computed: {
+    users() {
+      return this.$store.getters["users/users"];
+    },
+  },
+
   methods: {
     goTo(user) {
-      this.$router.push('/users/' + user.id)
-    }
-  }
+      this.$router.push("/users/" + user.id);
+    },
+  },
 };
 </script>
