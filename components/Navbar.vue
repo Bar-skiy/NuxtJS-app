@@ -34,9 +34,27 @@
                 >Login</nuxt-link
               >
             </li>
+            <li class="nav-item" v-if="isAuth">
+              <a class="nav-link" href="#" @click.prevent="logout">Logout</a>
+            </li>
           </ul>
         </div>
       </div>
     </nav>
   </header>
 </template>
+
+<script>
+export default {
+  computed: {
+    isAuth() {
+      return this.$store.getters.isAuth;
+    },
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch("logout");
+    },
+  },
+};
+</script>
